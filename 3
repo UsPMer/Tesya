@@ -55,6 +55,8 @@ int pat[7][32] = { //블럭 패턴
 	{ 0,0, -1,0, 1,0, 0,1,   0,0 ,0,-1 ,0,1, 1,0,   0,0, -1,0, 1,0, 0,-1,   0,0 ,-1,0, 0,-1, 0,1 } // ㅗ
 };
 
+int status = 0;
+int Pix = 2;
 int Ex = 1;
 int Sec = 1;
 int CantMove = 0;
@@ -69,6 +71,7 @@ int score = 10000;
 int Map[HIDTH][WIDTH];
 //int x = 180 + 50, y = 60 + 50 원점 == 230, y = 110
 int x = 260, y = 110, XOrig = x, YOrig = y;
+int cx=260, cy=570; //캐릭터 좌표
 int Nx = 520, Ny = 50;
 int NextColor = 0, NowColor = 0;
 int IsFirst = 0;
@@ -77,9 +80,9 @@ int DeleteLine;
 
 LPCTSTR End = TEXT("게임을 종료 합니다.");
 HDC hdc, MemDC, NextBDC, hMemDC, BMemDC, OLMemDC, BackBufDC, SagacDC, OldDC, CopyDC, BlackDC, WhenRandDC; //DC
-HDC EffectDC, EffBlackDC,BGDC, MainDC,NextBackDC;
+HDC EffectDC, EffBlackDC,BGDC, MainDC,NextBackDC ,CharDC;
 HBITMAP MyBitmap, OldBitmap, BackBitmap, SaveBitmap, CopyBitMap, BlackBitmap,hEffBlack,BGBitmap, MainBitmap; //비트맵 저장 핸들
-HBITMAP hBlock, hNextBlock, hBlock2, BackGround, hOlMem, hSagac, hWhenR, hEffect,NextBackBitmap; //블럭 이미지 저장 핸들
+HBITMAP hBlock, hNextBlock, hBlock2, BackGround, hOlMem, hSagac, hWhenR, hEffect,NextBackBitmap, CharBitmap; //블럭 이미지 저장 핸들
 HBITMAP STARTBmp;
 HWND hWnd,Button1;
 HINSTANCE g_hInst;
@@ -91,6 +94,7 @@ Image* image;
 Image* WBimage;
 Image* imgEffect;
 Image* Score;
+Image* Char;
 
 ofstream f;
 
@@ -237,19 +241,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		NowColor = RandColor();
 		NextColor = RandColor();
 		/*********************** 음악 ******************************/
+		/* 모든 음악은 상대경로를 지정하여 다른 컴퓨터에서도 실행이 되도록 한다.. 
+		   효과음은 PlaySound를 이용하여 출력을 한다. */
 		DWORD Sound1;
-		//Sound1 = LoadWAV(hWnd, L"..\\MainTitle_BGM.wav");
-		Sound1 = LoadWAV(hWnd, L"..\\Project______Resource\\음향\\MainTitle_BGM.wav");
+		Sound1 = LoadWAV(hWnd, L"..\\Project______Resource\\음향\\MainTitle_BGM.wav"); //A메인화면 BGM
 		Sound1 = mciSendCommand(1, MCI_PLAY, MCI_NOTIFY, (DWORD)(LPVOID)&mciPlay);
 		/***********************************************************/
 
 		/********************** 버튼 *******************************/
 		STARTBmp = LoadBitmap((HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), MAKEINTRESOURCE(IDB_BITMAP18)); //START 이미지
-		Button1 = CreateWindow(TEXT("button"),
+		Button1 = CreateWindow(TEXT("button"), //START 버튼
 			TEXT("START"), WS_CHILD | WS_VISIBLE |
 			BS_PUSHBUTTON | BS_BITMAP, 300, 400, 200, 80, hWnd, (HMENU)0,
 			g_hInst, NULL);
-		SendMessage(Button1, BM_SETIMAGE, 0, (LPARAM)STARTBmp);
+
+		SendMessage(Button1, BM_SETIMAGE, 0, (LPARAM)STARTBmp); //버튼 이미지를 버튼에 씌움
 		/************************************************************/
 
 
@@ -271,13 +277,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		BGDC = CreateCompatibleDC(hdc);
 		MainDC = CreateCompatibleDC(hdc);
 		NextBackDC = CreateCompatibleDC(hdc);
-
+		CharDC = CreateCompatibleDC(hdc);
+		 
+		CharBitmap = CreateCompatibleBitmap(hdc, 420, 60); //캐릭터 비트맵
+		SelectObject(CharDC, CharBitmap);
 		hEffect = CreateCompatibleBitmap(hdc, 420, 70); //이펙트 그려둘 비트맵 
 		SelectObject(EffectDC, hEffect);
 
 		CopyBitMap = CreateCompatibleBitmap(hdc, FIXWID, FIXHID);
 		SelectObject(CopyDC, CopyBitMap);
-		//FillRect(CopyDC, &Brt, (HBRUSH)GetStockObject(WHITE_BRUSH));
 		SaveBitmap = CreateCompatibleBitmap(hdc, FIXWID, FIXHID);
 		BackBitmap = CreateCompatibleBitmap(hdc, FIXWID, FIXHID);
 		OldBitmap = (HBITMAP)SelectObject(BackBufDC, BackBitmap);
@@ -292,6 +300,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		SelectObject(NextBackDC, NextBackBitmap);
 
 		BGBitmap = LoadBitmap(g_hInst, MAKEINTRESOURCE(IDB_BITMAP15));
+		Char = LoadPNG(g_hInst, MAKEINTRESOURCE(IDB_PNG5)); //캐릭터 스프라이트 저장 
 		image = LoadPNG(g_hInst, MAKEINTRESOURCE(IDB_PNG1)); //빈공간 블록 이미지 저장 (Gdi)
 		imgEffect = LoadPNG(g_hInst, MAKEINTRESOURCE(IDB_PNG3));
 		WBimage = LoadPNG(g_hInst, MAKEINTRESOURCE(IDB_PNG2));
@@ -328,6 +337,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		Game_Start = 0; //초기화 0은 시작전 1이 시작
 
 		break;
+
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{
@@ -337,9 +347,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			//PlaySound(NULL, 0, 0); //사운드를 정지합니다
 			DestroyWindow(Button1);
 			InvalidateRect(hWnd, NULL, FALSE);
+			SetTimer(hWnd, 6, 100, NULL);
 			break;
 		}
 		return 0;
+
 	case WM_KEYDOWN:
 		switch (wParam)
 		{
@@ -401,7 +413,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 				else
 				{
 					Draw_Block(0);
-					testArray();
+					//testArray();
 					downmove();
 					CheckCols();
 				}
@@ -413,7 +425,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			{
 				if (CheckCols() != 1)
 				{
-					testArray();
+					//testArray();
 					downmove();
 					CheckCols();
 				}
@@ -446,7 +458,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 							isfull();
 						x = 230; y = 110;
 						XOrig = x; YOrig = y;
-						testArray();
+						//testArray();
 
 
 						///////////// 블럭 정보 초기화////////////////
@@ -487,10 +499,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		case 5: //블럭 폭발 애니메이션 //460 * (Ex - 1)
+		{
 			Graphics Exp(EffectDC);
 			BitBlt(EffectDC, 0, 0, 420, 70, EffBlackDC, 0, 0, SRCCOPY); //이펙트 DC 리프레시
-			Exp.DrawImage(imgEffect, (30 * Ex)+Sec, 0, 460 * (Ex - 1),0, 200, 70, UnitPixel);
-			//Exp.DrawImage(imgEffect, (30 * Ex) + 20, DeleteLine * 29 + 10, 460 * (Ex - 1), 0, 100, 70, UnitPixel);
+			Exp.DrawImage(imgEffect, (30 * Ex) + Sec, 0, 460 * (Ex - 1), 0, 200, 70, UnitPixel);
 			InvalidateRect(hWnd, NULL, FALSE);
 			Sec += 15;
 			Ex++;
@@ -501,7 +513,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 				Ex = 1;
 				Sec = 0;
 			}
-				break;
+		}
+			break;
+
+		case 6: //캐릭터 애니메이션
+			
+			if (cx == 50)
+			{
+				status = 1;
+				Pix = 5;
+			}
+			else if (cx == 440)
+			{
+				status = 0;
+				Pix = 1;
+			}
+
+			if (status == 0) //status 0일시 <-
+			{
+				cx -= 15;
+				if (Pix != 4)
+					Pix++;
+				else
+					Pix = 1;
+			}
+			else //1일시 ->
+			{
+				cx += 15;
+				if (Pix != 8)
+					Pix++;
+				else
+					Pix = 5;
+			}
+			InvalidateRect(hWnd, NULL, FALSE);
+			break;
 		}
 		return 0;
 	case WM_PAINT:
@@ -516,6 +561,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			WhereBlock();
 			TransparentBlt(BackBufDC, 50, DeleteLine * 30 - 10, 420, 70, EffectDC, 0, 0, 420, 70, RGB(0, 0, 0));
 			Draw_Score();
+			ChAnime();
 			BitBlt(hdc, 0, 0, FIXWID, FIXHID, BackBufDC, 0, 0, SRCCOPY);
 		}
 		else
@@ -531,6 +577,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		KillTimer(hWnd, 3);
 		KillTimer(hWnd, 4);
 		KillTimer(hWnd, 5);
+		KillTimer(hWnd, 6);
 		if (MessageBox(hWnd, End, (LPCWSTR)"종료", MB_OK) == IDYES)
 		{
 			DestroyWindow(hWnd);
@@ -544,6 +591,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			delete WBimage;
 			delete image;
 			delete Score;
+			delete Char;
 		}
 		ReleaseDC(hWnd, hdc); //DC 해제 
 
@@ -563,7 +611,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		DeleteDC(BGDC);
 		DeleteDC(MainDC);
 		DeleteDC(NextBackDC);
+		DeleteDC(CharDC);
 
+		DeleteObject(CharBitmap);
 		DeleteObject(hEffect);
 		DeleteObject(hWhenR);
 		DeleteObject(BlackBitmap);
@@ -585,10 +635,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		DeleteObject(NextBackBitmap);
 		DeleteObject(STARTBmp);
 
-		KillTimer(hWnd, 1);
-		KillTimer(hWnd, 2);
-		KillTimer(hWnd, 3);
-		KillTimer(hWnd, 4);
 		PostQuitMessage(0);
 	}
 
@@ -617,7 +663,7 @@ void RightNowSelec() //즉시 배치 함수
 				isfull();
 			x = 230; y = 110;
 			XOrig = x; YOrig = y;
-			testArray();
+			//testArray();
 
 
 			///////////// 블럭 정보 초기화////////////////
@@ -634,12 +680,11 @@ void RightNowSelec() //즉시 배치 함수
 			SelectObject(hMemDC, hBlock);
 			//////////////////////////////////////////////
 
-			DrawNextBlock();
 			CantMove = 0;
 			Down = 0;
 			break;
 		}
-		testArray();
+		//testArray();
 	}
 	SetTimer(hWnd, 1, Time1, NULL);
 }
@@ -754,7 +799,7 @@ void InitBoard() //배열 초기화 0 = 빈공간 1 = 벽
 
 void Draw_Block(int flag) //블럭 출력 함수  // brickpatnum[7] = { 2,1,2,2,4,4,4 };
 {
-	testArray();
+	//testArray();
 	HDC B;
 	B = GetDC(hWnd);
 
@@ -781,7 +826,6 @@ void Draw_Block(int flag) //블럭 출력 함수  // brickpatnum[7] = { 2,1,2,2,
 			x += (pat[Rand][i] * 30);
 			y += (pat[Rand][i + 1] * 30);
 			BitBlt(CopyDC, x, y, 30, 30, B, 0, 0, SRCCOPY);
-			//g.DrawImage(image, x, y,30,30);
 		}
 	}
 
@@ -861,7 +905,7 @@ void leftmove() //왼쪽으로 이동.
 	InsertAry();
 	//CheckCols();
 	Draw_Block(1);
-	testArray();
+	//testArray();
 }
 
 void rightmove() //오른쪽으로 이동.
@@ -873,7 +917,7 @@ void rightmove() //오른쪽으로 이동.
 	InsertAry();
 	//CheckCols();
 	Draw_Block(1);
-	testArray();
+	//testArray();
 }
 
 void CleanAry() //배열에 저장되있는 이동전의 블럭값을 없애준다.
@@ -924,11 +968,6 @@ void InsertAry() //블록값을 1으로 초기화 하여 이동중임을 나타�
 	}
 }
 
-void DrawCharacter()
-{
-
-}
-
 void rotate() //블럭 회전 함수 
 {
 	if ((WhatAround(1) == 0 || WhatAround(1) == 1) && (WhatAround(-1) == 0 || WhatAround(-1) == 1) && Down != 1)
@@ -974,6 +1013,7 @@ int isfull() //1칸이 다 찼을시 비워줌.
 
 void CleanLine() //블럭이 다 채워진 줄을 지운후, 지운수만큼 윗 블럭들을 밑으로 내려준다.
 {
+	SetTimer(hWnd, 5, 60, NULL); //폭발 이펙트 타이머 
 	score += 1000;
 	for (int j = 1; j < WIDTH - 1; j++)
 	{
@@ -988,7 +1028,6 @@ void CleanLine() //블럭이 다 채워진 줄을 지운후, 지운수만큼 윗
 			Map[m][n] = Map[m - 1][n];
 		}
 	}
-	SetTimer(hWnd, 5, 60, NULL); //폭발 이펙트 타이머 
 
 	for (int k = 1; k < WIDTH - 1; k++)
 		Map[1][k] = 0;
@@ -1026,11 +1065,29 @@ int WhatAround(int x)
 
 void ChAnime()
 {
+	Graphics CHAR(BackBufDC); //한발자국에 15픽셀씩 이동. 
+	//Status가 0이면 왼쪽. 1이면 오른쪽으로 이동 
+	CHAR.DrawImage(Char, cx, cy, Pix * 30, 0, 30, 60, UnitPixel);
+
+/*벽에서 벽까지가는데 걸리는시간은 3초
+점프는 한칸만 점프하게되고
+이동속도는 그대로인상태에서 위로 한칸점프
+떨어졌을때
+3칸이상부터 떨어지면 낙사
+3칸이라는거는 캐릭터가 서있던 블럭부터 착지한 블럭까지의 칸수
+4칸이상부터구나
+블럭이 플레이어 머리위로 떨어지게되면
+0.5초동안은 블럭이 캐릭터 머리위에있다가
+다시 떨어짐 그때맞으면 게임오버
+대신 스페이스바로 한번에 내린블럭은
+맞으면 즉사
+*/
+
 }//캐릭터 애니메이션 구현함수
 
-void Draw_Score()
+void Draw_Score() //score의 각 자리값을 분리하여 문자열에 넣은후 그 문자대로 스코어 이미지 출력
 {
-	Graphics S_core(BackBufDC); //여기수정
+	Graphics S_core(BackBufDC); 
 	int Squa = 1, Per = score;
 	int quo;
 	char ScoreStr[9] = { 0 };
@@ -1048,7 +1105,4 @@ void Draw_Score()
 
 /*
 void printstage()
-void makenewblock()
-void drawscreen()
-void printscore()
 */
