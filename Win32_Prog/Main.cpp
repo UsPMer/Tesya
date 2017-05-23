@@ -3,6 +3,7 @@
 	투명블럭, 이펙트등은 PNG형식으로 투명을 출력하여 작업량을 줄이고,
 	이외의 블럭, 배경등은 bmp형식으로 출력한다.
 	*/
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
@@ -15,6 +16,7 @@
 #include "Mmsystem.h"
 #include "Digitalv.h"
 #include <string>
+
 #pragma comment(lib,"User32.lib")
 #pragma comment(lib, "gdiplus")
 #pragma comment(lib,"msimg32.lib")
@@ -226,7 +228,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 	g_hInst = hInstance;
 
 	/*
-	oken인자는 윈도우의 핸들과 유사한 GDI+의 라이브러리 Token. 이 값은 GdiplusShutdown()함수의 인자로 이용됨.
+	Token인자는 윈도우의 핸들과 유사한 GDI+의 라이브러리 Token. 이 값은 GdiplusShutdown()함수의 인자로 이용됨.
 	Input인자는 입력 옵션을 정의하는 GdiPlusStartupInput구조체의 주소, 별도의 옵션이 없다면 Default값이 설정됨.
 	Ouput는 초기화 결과 반환. NULL이라면 결과받지 않음.
 	*/
