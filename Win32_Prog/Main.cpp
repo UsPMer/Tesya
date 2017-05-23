@@ -226,7 +226,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 	g_hInst = hInstance;
 
 	/*
-	oken인자는 윈도우의 핸들과 유사한 GDI+의 라이브러리 Token. 이 값은 GdiplusShutdown()함수의 인자로 이용됨.
+	Token인자는 윈도우의 핸들과 유사한 GDI+의 라이브러리 Token. 이 값은 GdiplusShutdown()함수의 인자로 이용됨.
 	Input인자는 입력 옵션을 정의하는 GdiPlusStartupInput구조체의 주소, 별도의 옵션이 없다면 Default값이 설정됨.
 	Ouput는 초기화 결과 반환. NULL이라면 결과받지 않음.
 	*/
