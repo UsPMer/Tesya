@@ -3,6 +3,7 @@
 	투명블럭, 이펙트등은 PNG형식으로 투명을 출력하여 작업량을 줄이고,
 	이외의 블럭, 배경등은 bmp형식으로 출력한다.
 	*/
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
@@ -15,6 +16,7 @@
 #include "Mmsystem.h"
 #include "Digitalv.h"
 #include <string>
+
 #pragma comment(lib,"User32.lib")
 #pragma comment(lib, "gdiplus")
 #pragma comment(lib,"msimg32.lib")

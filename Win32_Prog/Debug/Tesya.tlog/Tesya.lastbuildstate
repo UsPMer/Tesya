@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+<<<<<<< HEAD
 Debug|Win32|C:\Users\dsm2017\Documents\Visual Studio 2015\Projects\Win32_Api_Prg\|
+=======
+Debug|Win32|D:\DSM10121HKH\OneDrive\Docummentary\Project\Tesya\|
+>>>>>>> 11a9b973ca9672970d6fdebe1af60767294c053c
