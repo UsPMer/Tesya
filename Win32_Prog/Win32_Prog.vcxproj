@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C98241DA-73A3-42A9-BBB4-D82CDB189ADF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Win32_Prog</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Tesya</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Project______Resource\배경\0-9개정판.png" />
+    <Image Include="..\Project______Resource\배경\clear!.png" />
+    <Image Include="..\Project______Resource\배경\COPYDC지우기 (2).bmp" />
+    <Image Include="..\Project______Resource\배경\CopyDC지우기.bmp" />
+    <Image Include="..\Project______Resource\배경\GAMEOVER.png" />
+    <Image Include="..\Project______Resource\배경\ingameUI .bmp" />
+    <Image Include="..\Project______Resource\배경\Option_UI.png" />
+    <Image Include="..\Project______Resource\배경\SCORE.png" />
+    <Image Include="..\Project______Resource\배경\Stage.png" />
+    <Image Include="..\Project______Resource\배경\Stage_버튼.png" />
+    <Image Include="..\Project______Resource\배경\Stage_상세.png" />
+    <Image Include="..\Project______Resource\배경\START_흰배경.bmp" />
+    <Image Include="..\Project______Resource\배경\겨울밤.bmp" />
+    <Image Include="..\Project______Resource\배경\결과창.png" />
+    <Image Include="..\Project______Resource\배경\도달선.bmp" />
+    <Image Include="..\Project______Resource\배경\미리보기 바탕.bmp" />
+    <Image Include="..\Project______Resource\배경\배경모음.bmp" />
+    <Image Include="..\Project______Resource\배경\버튼2.bmp" />
+    <Image Include="..\Project______Resource\배경\버튼모음1.bmp" />
+    <Image Include="..\Project______Resource\배경\보스리소스.png" />
+    <Image Include="..\Project______Resource\배경\숫자합_스테이지_일반.png" />
+    <Image Include="..\Project______Resource\배경\스테이지용맵.bmp" />
+    <Image Include="..\Project______Resource\배경\시작화면_타이틀.bmp" />
+    <Image Include="..\Project______Resource\배경\시작화면_흐리게.bmp" />
+    <Image Include="..\Project______Resource\배경\아이콘.ico" />
+    <Image Include="..\Project______Resource\배경\윤곽선.bmp" />
+    <Image Include="..\Project______Resource\배경\윤곽선240.bmp" />
+    <Image Include="..\Project______Resource\배경\체력바 + 제한선.png" />
+    <Image Include="..\Project______Resource\배경\코인.png" />
+    <Image Include="..\project______resource\블럭\bitmap14.bmp" />
+    <Image Include="..\Project______Resource\블럭\Black.bmp" />
+    <Image Include="..\Project______Resource\블럭\블럭_반투명.png" />
+    <Image Include="..\Project______Resource\블럭\위치_결합_20.png" />
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_BLUE.bmp" />
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_GRAY.bmp" />
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_GREE.bmp" />
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_MINT.bmp" />
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_PINK.bmp" />
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_PURP.bmp" />
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_YELL.bmp" />
+    <Image Include="..\Project______Resource\블럭\하얀블럭.bmp" />
+    <Image Include="..\Project______Resource\캐릭터\SoonSem_완성.png" />
+    <Image Include="..\Project______Resource\효과\선긋기.bmp" />
+    <Image Include="..\Project______Resource\효과\선긋기_결합.png" />
+    <Image Include="..\Project______Resource\효과\오버블럭.png" />
+    <Image Include="..\Project______Resource\효과\효과지우기.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\project______resource\배경\wave1.bin" />
+    <None Include="..\Project______Resource\배경\마우스 .cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Project______Resource\음향\click-01.wav" />
+    <Media Include="..\Project______Resource\음향\MainTitle_BGM.wav" />
+    <Media Include="..\Project______Resource\음향\레이저-02.wav" />
+    <Media Include="..\Project______Resource\음향\번개소리-02.wav" />
+    <Media Include="..\Project______Resource\음향\블럭착지음.wav" />
+    <Media Include="..\Project______Resource\음향\폭발음.wav" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

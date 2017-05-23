@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Project______Resource\블럭\블럭_반투명.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_BLUE.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_GRAY.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_GREE.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_MINT.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_PINK.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_PURP.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\크기변환_블럭_YELL.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\겨울밤.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\윤곽선.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\윤곽선240.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\하얀블럭.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\효과\선긋기_결합.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\Black.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\효과\선긋기.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\project______resource\블럭\bitmap14.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\효과\효과지우기.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\블럭\위치_결합_20.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\아이콘.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\시작화면_흐리게.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\시작화면_타이틀.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\미리보기 바탕.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\0-9개정판.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\START_흰배경.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\캐릭터\SoonSem_완성.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\도달선.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\GAMEOVER.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\SCORE.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\ingameUI .bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\효과\오버블럭.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\Stage.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\코인.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\버튼모음1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\Stage_상세.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\Stage_버튼.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\Option_UI.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\배경모음.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\숫자합_스테이지_일반.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\체력바 + 제한선.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\CopyDC지우기.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\버튼2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\COPYDC지우기 (2).bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\보스리소스.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\스테이지용맵.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\clear!.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Project______Resource\배경\결과창.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\project______resource\배경\wave1.bin">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="..\Project______Resource\배경\마우스 .cur">
+      <Filter>리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Project______Resource\음향\MainTitle_BGM.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\Project______Resource\음향\click-01.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\Project______Resource\음향\블럭착지음.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\Project______Resource\음향\레이저-02.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\Project______Resource\음향\번개소리-02.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="..\Project______Resource\음향\폭발음.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
